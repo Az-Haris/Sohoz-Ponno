@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+@theme{
+  --color-primary: #32BC4E;
+  --color-secondary: #F7941B;
+  --color-text: #475569;
+}
+body{
+  font-family: "Noto Sans Bengali", sans-serif;
+  @apply text-text/80
+}
+
+
+.link{
+  @apply hover:text-primary transition duration-200 ease-in-out text-[16px] font-medium
+}
+.hoverEffect{
+  @apply hover:text-primary transition duration-200 ease-in-out;
+}
+.nav-links .active{
+  @apply text-primary;
+}
