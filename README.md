@@ -19,9 +19,8 @@ A minimalistic and user-friendly product landing page built for easy online shop
 - **Styling:** Tailwind CSS
 
 ## 📸 Screenshots
-
-> *(Add screenshots here if you have them)*  
-> Example: `![Home Page](./screenshots/home.png)`
+ 
+> [Home Page](./Sohoz_Ponno.png)
 
 ## 🧠 Lessons Learned
 
