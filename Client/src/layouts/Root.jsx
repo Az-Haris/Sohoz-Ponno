@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import GoToTop from "../components/GoToTop";
 import Footer from "../components/Footer";
 import { ToastContainer, Slide } from "react-toastify";
+import FloatingSocial from "../components/FloatingSocial";
 
 const Root = () => {
   return (
@@ -12,6 +13,7 @@ const Root = () => {
       <Outlet></Outlet>
       <Footer />
       <GoToTop />
+      <FloatingSocial/>
       <ToastContainer
         position="top-right"
         autoClose={3000}

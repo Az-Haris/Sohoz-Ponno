@@ -3,17 +3,70 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const nodemailer = require('nodemailer'); // for sending email
+const axios = require('axios');
+const crypto = require('crypto'); // For hashing user dat
 
 const port = process.env.PORT || 5000;
 const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['https://sohoz-ponno.netlify.app', 'http://localhost:5173'], 
+  origin: ['https://sohoz-ponno.netlify.app', 'http://localhost:5173', 'https://sohozponno.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
+
+
+
+// Conversion API
+const sendFacebookEvent = async (order) => {
+  const accessToken = process.env.FB_ACCESS_TOKEN;
+  const pixelId = process.env.FB_PIXEL_ID;
+
+  const url = `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${accessToken}`;
+
+  const hash = (value) =>
+    value ? crypto.createHash('sha256').update(value.trim().toLowerCase()).digest('hex') : null;
+
+  const eventTime = Math.floor(Date.now() / 1000);
+
+  const payload = {
+    data: [
+      {
+        event_name: "Purchase",
+        event_time: eventTime,
+        action_source: "website",
+        user_data: {
+          ph: [hash(order.customerPhone)],
+          client_user_agent: order.userAgent || "",
+          client_ip_address: order.ip || "", // You'll extract it from request
+        },
+        custom_data: {
+          currency: "BDT",
+          value: order.grandTotal,
+          contents: order.cart.map(item => ({
+            id: item.customerPhone,
+            quantity: item.productQuantity,
+            item_price: item.price
+          })),
+          content_type: "product"
+        }
+      }
+    ]
+  };
+
+  try {
+    const response = await axios.post(url, payload);
+    console.log("FB Event Sent:", response.data);
+  } catch (error) {
+    console.error("FB Event Error:", error.response?.data || error.message);
+  }
+};
+
+
+
+
 
 // MongoDB connection
 const uri = process.env.MONGODB_URI;
@@ -87,8 +140,15 @@ app.post('/api/orders', async (req, res) => {
     const orderData = req.body;
     const result = await ordersCollection.insertOne(orderData);
 
-    // After saving, send email
+    // Send email
     await sendOrderEmail(orderData);
+
+    // Send event to Facebook
+    await sendFacebookEvent({
+      ...orderData,
+      ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+      userAgent: req.headers['user-agent']
+    });
 
     res.status(201).send({
       message: "Order placed successfully.",

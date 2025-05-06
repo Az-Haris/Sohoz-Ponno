@@ -70,6 +70,8 @@ const OrderNow = () => {
     const name = e.target.name.value;
     const phone = e.target.phone.value;
     const address = e.target.address.value;
+    const upazila = e.target.upazila.value;
+    const district = e.target.district.value;
 
     if(cart.length === 0){
       toast.error("উপর থেকে প্রোডাক্ট নির্বাচন করুন");
@@ -81,14 +83,16 @@ const OrderNow = () => {
       cart, // array of selected products
       customerName: name, // from input field
       customerPhone: phone, // from input field
-      customerAddress: address, // from input field
+      customerAddress: `${address}, ${upazila}, ${district}`, // from input field
       totalProductCost,
       finalDeliveryCharge,
       codCharge,
       grandTotal,
     };
 
-    const res = await fetch("https://sohoj-ponno.vercel.app/api/orders", {
+    console.log(orderData.customerAddress)
+
+    const res = await fetch("https://landing-api.sohozponno.com/api/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -340,15 +344,41 @@ const OrderNow = () => {
                 </div>
 
                 <div className="flex flex-col mb-5">
-                  <label htmlFor="address">আপনার ঠিকানা*</label>
+                  <label htmlFor="address">পণ্য ডেলিভারি ঠিকানা*</label>
                   <input
                     id="address"
                     name="address"
                     type="text"
-                    placeholder="বাসা নং, রোড নং, থানা, জেলা"
+                    placeholder="বাসা নং / রোড নং / গ্রাম"
                     className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
                     required
                   />
+                </div>
+                <div className="flex gap-0 md:gap-3 flex-col md:flex-row">
+                  <div className="flex flex-col mb-5 w-full">
+                  <label htmlFor="upazila">উপজেলা অথবা থানা*</label>
+                  <input
+                    id="upazila"
+                    name="upazila"
+                    type="text"
+                    placeholder="উপজেলা অথবা থানা"
+                    className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
+                    required
+                  />
+                </div>
+
+
+                <div className="flex flex-col mb-5 w-full">
+                  <label htmlFor="district">জোলা*</label>
+                  <input
+                    id="district"
+                    name="district"
+                    type="text"
+                    placeholder="জেলার নাম"
+                    className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
+                    required
+                  />
+                </div>
                 </div>
 
                 <Button size="lg" className="w-full mt-5">
