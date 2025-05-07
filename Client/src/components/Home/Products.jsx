@@ -24,13 +24,13 @@ const Products = () => {
 
   return (
     <Container className="mt-24">
-      <div className="flex justify-center gap-3">
-        <span class="relative flex size-4">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-          <span class="relative inline-flex size-4 rounded-full bg-sky-500"></span>
+      <div className="flex justify-center gap-3 px-4">
+        <span class="relative flex size-6">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-500 opacity-75"></span>
+          <span class="relative inline-flex size-6 rounded-full bg-secondary"></span>
         </span>
-        <p className="text-center text-primary text-3xl mb-6 font-black">
-          ১০% ছাড় বিশুদ্ধ এবং স্বাস্থ্যকর আচারে!
+        <p className="text-primary text-3xl mb-6 font-black">
+          ১০% ছাড় ও ক্যাশ-অন হোম ডেলিভারি
         </p>
       </div>
 

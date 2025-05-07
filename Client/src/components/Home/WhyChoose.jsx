@@ -4,11 +4,11 @@ import Container from "../Container";
 
 const WhyChoose = () => {
   return (
-    <Container className="mt-36">
-      <h2 className="text-center text-3xl max-w-96 mx-auto mb-12 font-black text-primary">
-        আমরাই সেরা
+    <Container className="mt-20 md:mt-36">
+      <h2 className="text-center text-3xl max-w-96 mx-auto mb-8 md:mb-12 font-black text-primary">
+        সেরা পণ্য, সহজ সমাধান
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10">
         <div className="group text-center flex flex-col items-center">
           <img
             className="p-5 group-hover:bg-slate-100 transition-all ease-in-out duration-300 rounded-lg w-20"
@@ -16,10 +16,11 @@ const WhyChoose = () => {
             alt=""
           />
           <h2 className="text-xl font-semibold mt-5 mb-3 text-gray-700 group-hover:text-primary transition-all ease-in-out duration-300">
-            অথেন্টিক প্রোডাক্ট
+            আসল ঘরের স্বাদের প্রতিশ্রুতি
           </h2>
           <p className="text-gray-500">
-            আমাদের কাছেই পাচ্ছেন সেরা স্বাদ যুক্ত খুলনার অথেন্টিক দেশীয় চুইঝাল
+            আমাদের তৈরি প্রতিটি আচারেই রয়েছে মায়ের হাতের ছোঁয়া—খাঁটি ঘরের মশলা
+            আর যত্নে বানানো সহজ পণ্যের হোমমেড আচার এখন ঘরেই পাবেন!
           </p>
         </div>
 
@@ -30,11 +31,11 @@ const WhyChoose = () => {
             alt=""
           />
           <h2 className="text-xl font-semibold mt-5 mb-3 text-gray-700 group-hover:text-primary transition-all ease-in-out duration-300">
-            প্রিমিয়াম কোয়ালিটি
+            মানের কোনো আপস নেই
           </h2>
           <p className="text-gray-500">
-            রেগুলার বা অপরিপক্ক নয়, আমরাই দিচ্ছি বাছাইকৃত প্রিমিয়াম কোয়ালিটির
-            চুইঝাল
+            আমরা দিচ্ছি বাছাইকৃত কাঁচামাল দিয়ে তৈরি করা প্রিমিয়াম কোয়ালিটির
+            আচার—নেই কোনো কেমিক্যাল বা প্রিজারভেটিভ!
           </p>
         </div>
 
@@ -45,11 +46,11 @@ const WhyChoose = () => {
             alt=""
           />
           <h2 className="text-xl font-semibold mt-5 mb-3 text-gray-700 group-hover:text-primary transition-all ease-in-out duration-300">
-            রিফান্ড পলিসি
+            নিশ্চিন্তে কিনুন—রিফান্ড সুবিধাসহ
           </h2>
           <p className="text-gray-500">
-            যেকোন ত্রুটিপূর্ণ পণ্যের ক্ষেত্রে থাকছে পণ্য অথবা টাকা রিফান্ডের
-            সুবিধা
+            পণ্য নিয়ে কোনো অসুবিধা? দুশ্চিন্তার কিছু নেই—ত্রুটিপূর্ণ পণ্যে আমরা
+            দিচ্ছি সম্পূর্ণ রিফান্ড বা রিপ্লেসমেন্ট সুবিধা।
           </p>
         </div>
 
@@ -60,10 +61,11 @@ const WhyChoose = () => {
             alt=""
           />
           <h2 className="text-xl font-semibold mt-5 mb-3 text-gray-700 group-hover:text-primary transition-all ease-in-out duration-300">
-            ক্যাশ অন ডেলিভারী
+            আগে পণ্য, তারপর টাকা
           </h2>
           <p className="text-gray-500">
-            আমাদের রয়েছে পন্য হাতে পেয়ে তারপর টাকা পরিশোধ করার সুব্যবস্থা
+            বিশ্বাসের জায়গা থেকেই সহজ পণ্যে রয়েছে ক্যাশ অন ডেলিভারি—পণ্য হাতে
+            পেয়ে তারপর মূল্য পরিশোধ করুন।
           </p>
         </div>
       </div>

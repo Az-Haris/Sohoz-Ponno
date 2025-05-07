@@ -4,8 +4,8 @@ import Accordion, { AccordionItem } from "../Accordion";
 
 const Faq = () => {
   return (
-    <Container className="mt-36">
-      <h2 className="text-center text-3xl max-w-96 mx-auto mb-12 font-black text-primary">
+    <Container className="mt-20 md:mt-36">
+      <h2 className="text-center text-3xl max-w-96 mx-auto mb-8 md:mb-12 font-black text-primary">
       সচরাচর জিজ্ঞাস্য প্রশ্নাবলি
       </h2>
 
@@ -13,7 +13,7 @@ const Faq = () => {
       <Accordion>
         <AccordionItem value="1" trigger="“সহজ পন্য” কী ধরনের আচার তৈরি করে?
 ">
-        আমরা ঘরোয়া রেসিপিতে তৈরি বিভিন্ন ধরনের আচার তৈরি করি—যেমন নাগা মরিচ, পাকা আম, জলপাই, বরই, মিক্সড ফল ও নারকেল মসলা আচার।
+        আমরা ঘরোয়া রেসিপিতে তৈরি বিভিন্ন ধরনের আচার তৈরি করি—যেমন রসুন, বোম্বাই মরিচ, আম, আম-সত্ত্ব, জলপাই, বরই, তেতুল, ও মিক্সড আচার।
         </AccordionItem>
         <AccordionItem
           value="2"

@@ -13,9 +13,9 @@ const Home = () => {
         <div>
             <ScrollToTop/>
             <Products/>
-            <WhyChoose/>
             {/* <Review/> */}
             <Faq/>
+            <WhyChoose/>
             {/* <Gallery/> */}
             {/* <Help/> */}
             <OrderNow/>

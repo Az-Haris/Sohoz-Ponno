@@ -5,7 +5,7 @@ const FloatingSocial = () => {
   return (
     <div className="fixed left-5 flex flex-col gap-3 bottom-5 z-50">
       <a
-        href="https://www.facebook.com/messages/t/532263166640017"
+        href="https://m.me/532263166640017?source=qr_link_share"
         target="_blank"
       >
         <img className="w-10" src={assets.messenger} alt="" />

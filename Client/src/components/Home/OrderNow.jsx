@@ -12,9 +12,9 @@ import { useNavigate } from "react-router";
 import { CartContext } from "../../contexts/CartContext";
 
 const OrderNow = () => {
-  const {cart, setCart} = useContext(CartContext)
+  const { cart, setCart } = useContext(CartContext);
   const [deliveryCharge, setDeliveryCharge] = useState(130);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleAddToCart = (product) => {
@@ -66,17 +66,17 @@ const OrderNow = () => {
 
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const name = e.target.name.value;
     const phone = e.target.phone.value;
     const address = e.target.address.value;
     const upazila = e.target.upazila.value;
     const district = e.target.district.value;
 
-    if(cart.length === 0){
+    if (cart.length === 0) {
       toast.error("উপর থেকে প্রোডাক্ট নির্বাচন করুন");
-      setLoading(false)
-      return
+      setLoading(false);
+      return;
     }
 
     const orderData = {
@@ -90,8 +90,6 @@ const OrderNow = () => {
       grandTotal,
     };
 
-    console.log(orderData.customerAddress)
-
     const res = await fetch("https://landing-api.sohozponno.com/api/orders", {
       method: "POST",
       headers: {
@@ -101,7 +99,7 @@ const OrderNow = () => {
     });
 
     if (res.ok) {
-      setLoading(false)
+      setLoading(false);
       toast.success("অর্ডার সফলভাবে প্লেস হয়েছে!");
 
       e.target.name.value = "";
@@ -110,9 +108,9 @@ const OrderNow = () => {
 
       setCart([]);
 
-      navigate('/invoice', { state: { order: orderData } });
+      navigate("/invoice", { state: { order: orderData } });
     } else {
-      setLoading(false)
+      setLoading(false);
       toast.error("কিছু ভুল হয়েছে। আবার চেষ্টা করুন।");
 
       e.target.name.value = "";
@@ -123,8 +121,8 @@ const OrderNow = () => {
 
   return (
     <Element name="order">
-      <Container className="mt-36">
-        <h2 className="text-center text-3xl max-w-96 mx-auto mb-12 font-black text-primary">
+      <Container className="mt-20 md:mt-36">
+        <h2 className="text-center text-3xl max-w-96 mx-auto mb-8 md:mb-12 font-black text-primary">
           অর্ডার করুন এখনই
         </h2>
 
@@ -258,7 +256,6 @@ const OrderNow = () => {
                     <option value="110">
                       Inside Dhaka City - ঢাকার শহরের ভেতরে - ৳ ১১০
                     </option>
-                    
                   </select>
                 </div>
 
@@ -330,6 +327,44 @@ const OrderNow = () => {
                 </div>
 
                 <div className="flex flex-col mb-5">
+                  <label htmlFor="address">পণ্য ডেলিভারি ঠিকানা*</label>
+                  <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    placeholder="বাসা নং / রোড নং / গ্রাম"
+                    className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
+                    required
+                  />
+                </div>
+                <div className="flex gap-0 md:gap-3 flex-col md:flex-row">
+                  <div className="flex flex-col mb-5 w-full">
+                    <label htmlFor="upazila">উপজেলা অথবা থানা*</label>
+                    <input
+                      id="upazila"
+                      name="upazila"
+                      type="text"
+                      placeholder="উপজেলা অথবা থানা"
+                      className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col mb-5 w-full">
+                    <label htmlFor="district">জেলা*</label>
+                    <input
+                      id="district"
+                      name="district"
+                      type="text"
+                      placeholder="জেলার নাম"
+                      className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
+                      required
+                    />
+                  </div>
+                </div>
+
+
+                <div className="flex flex-col mb-5">
                   <label htmlFor="phone">মোবাইল নাম্বার (১১ সংখ্যা)*</label>
                   <input
                     id="phone"
@@ -343,48 +378,14 @@ const OrderNow = () => {
                   />
                 </div>
 
-                <div className="flex flex-col mb-5">
-                  <label htmlFor="address">পণ্য ডেলিভারি ঠিকানা*</label>
-                  <input
-                    id="address"
-                    name="address"
-                    type="text"
-                    placeholder="বাসা নং / রোড নং / গ্রাম"
-                    className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
-                    required
-                  />
-                </div>
-                <div className="flex gap-0 md:gap-3 flex-col md:flex-row">
-                  <div className="flex flex-col mb-5 w-full">
-                  <label htmlFor="upazila">উপজেলা অথবা থানা*</label>
-                  <input
-                    id="upazila"
-                    name="upazila"
-                    type="text"
-                    placeholder="উপজেলা অথবা থানা"
-                    className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
-                    required
-                  />
-                </div>
-
-
-                <div className="flex flex-col mb-5 w-full">
-                  <label htmlFor="district">জোলা*</label>
-                  <input
-                    id="district"
-                    name="district"
-                    type="text"
-                    placeholder="জেলার নাম"
-                    className="mt-1 border py-2 pl-3 text-lg rounded-md border-primary/50 focus:outline-primary"
-                    required
-                  />
-                </div>
-                </div>
 
                 <Button size="lg" className="w-full mt-5">
-                  {loading? (<FiLoader className="text-2xl animate-spin" />) : (<IoIosCheckmarkCircle className="text-2xl" />)}
-                   অর্ডার প্লেস
-                  করুন
+                  {loading ? (
+                    <FiLoader className="text-2xl animate-spin" />
+                  ) : (
+                    <IoIosCheckmarkCircle className="text-2xl" />
+                  )}
+                  অর্ডার প্লেস করুন
                 </Button>
               </form>
             </div>
